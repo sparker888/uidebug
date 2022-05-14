@@ -7,27 +7,31 @@ const plans = [
     ram: '12GB',
     cpus: '6 CPUs',
     disk: '160 GB SSD disk',
+    image_url: 'http://pets-images.dev-apis.com/pets/dog1.jpg'
   },
   {
     name: 'Business',
     ram: '16GB',
     cpus: '8 CPUs',
     disk: '512 GB SSD disk',
+    image_url: 'http://pets-images.dev-apis.com/pets/dog24.jpg'
   },
   {
     name: 'Enterprise',
     ram: '32GB',
     cpus: '12 CPUs',
     disk: '1024 GB SSD disk',
+    image_url: 'http://pets-images.dev-apis.com/pets/dog25.jpg'
   },
 ]
 
 export default function RadioUI() {
   const [selected, setSelected] = useState(plans[0])
 
-  console.log(`Selected plan: ${selected.name}`)
+  console.log(selected)
 
   return (
+      <>
     <div className="w-full px-4 py-16">
       <div className="mx-auto w-full max-w-md">
         <RadioGroup value={selected} onChange={setSelected}>
@@ -90,6 +94,8 @@ export default function RadioUI() {
         </RadioGroup>
       </div>
     </div>
+    <PlanImage url={selected.image_url}/>
+</>
   )
 }
 
@@ -106,4 +112,18 @@ function CheckIcon(props) {
       />
     </svg>
   )
+}
+
+function PlanImage({url}) {
+    return (
+    <div className="mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:relative">
+        <div className="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
+            <img
+            className="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
+            src={url}
+            alt=""
+            />
+        </div>
+    </div>
+    )
 }
